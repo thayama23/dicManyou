@@ -9,4 +9,12 @@
 * detail  (detail:text)
 
 # Label テーブル
+<<<<<<< HEAD
 * name (name:string)
+=======
+* private (private:string)
+* work  (work:string)
+* hobby  (hobby:string)
+* high_priority  (high_priority:string)
+* low_priority  (low_priority:string)
+>>>>>>> 5d40c41d8d0f08159ca00beec780870b7f4a3337
