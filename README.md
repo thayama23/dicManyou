@@ -10,8 +10,8 @@
 * detail  (detail:text)
 
 # Label テーブル
-* private
-* work
+* 私用
+* 仕事
 * high priority
 * mid priority
 * low priority
