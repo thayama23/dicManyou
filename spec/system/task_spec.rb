@@ -6,9 +6,19 @@ RSpec.describe 'タスク管理機能', type: :system do
     # 作成したタスクオブジェクトを各テストケースで呼び出せるようにインスタンス変数に代入
     @task = FactoryBot.create(:task, title: 'task')
   end
+
+  background do
+    # あらかじめタスク一覧のテストで使用するためのタスクを二つ作成する
+    FactoryBot.create(:task, title: '付け加えた名前１')
+    FactoryBot.create(:task, title: '付け加えた名前２')
+    FactoryBot.create(:second_task, title: '付け加えた名前３', content: '付け加えたコンテント')
+  end 
+
+
+
   describe 'タスク一覧画面' do
     context 'タスクを作成した場合' do
-      it '作成済みのタスクが表示されること'
+      it '作成済みのタスクが表示されること' do
         # beforeに必要なタスクデータが作成されるので、ここでテストデータ作成処理を書く必要がない
         visit tasks_path
         expect(page).to have_content 'task'
