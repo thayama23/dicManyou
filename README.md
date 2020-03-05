@@ -11,7 +11,22 @@
 # Label テーブル
 * name (name:string)
 
-# Herokuへのデプロイ手順
+## Herokuへのデプロイ手順
+
+- アセットコンパイル(アセットの圧縮)
+```sh
+$ rails assets:precompile RAILS_ENV=production
+```
+
+- ファイルをステージングエリアへ
+```sh
+$ git add .
+$ git commit -m "コミットメッセージ"
+$ git push origin <ブランチ名>
+```
+
+
+
 |する事|コマンド|メモ|
 |:—————|:——————:|:——————:|
 |アセットコンパイル|Asset compile rails assets:precompile RAILS_ENV=production|アセットの圧縮｜
