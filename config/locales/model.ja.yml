@@ -1,0 +1,18 @@
+ja: 
+  Task:
+    title: タスク一覧
+    name: タスク名
+    detail: タスク詳細
+    editing: タスク編集
+    new: 新しいタスク追加
+  activerecord:
+    # models:
+    #   name: "タスク名1"
+    #   detail: "タスク詳細1"
+    attributes:
+      task:
+        name: "タスク名"
+        detail: "タスク詳細"
+      
+  
+    
