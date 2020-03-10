@@ -3,12 +3,5 @@ class ApplicationRecord < ActiveRecord::Base
   # enum progress: {"未着手": 0, "着手中": 1, "完了": 2}
 
 end
-
-# task.archived!
-# task.active? # => false
-# task.status  # => "archived"
-
-# task.archived # => Relation for all archived Conversations
-
-# task.statuses # 
+ 
 
