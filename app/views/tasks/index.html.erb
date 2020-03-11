@@ -3,17 +3,14 @@
 <h1><%= t('Task.title') %> </h1>
 
 <%= form_with(model: @tasks, url: tasks_path, method: :get, local: true) do |form| %>
-
   <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+    <%= form.label t("activerecord.attributes.task.name") %>
+    <%= form.text_field :name, value: "" %>
   </div>
-
   <div class="task_title">
-    <%= form.label :progress %>
+    <%= form.label t("activerecord.attributes.task.progress") %>
     <%= form.select :progress, [["未着手", 0 ], ["着手中", 1 ], ["完了", 2 ]] ,{include_blank: true}%>
   </div>
-
    <%= form.submit "検索" %>
 <% end %>
 

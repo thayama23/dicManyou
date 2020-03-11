@@ -4,7 +4,7 @@ RSpec.describe 'タスク管理機能', type: :system do
     # 「タスク一覧画面」や「タスク詳細画面」などそれぞれのテストケースで、before内のコードが実行される
     # 各テストで使用するタスクを1件作成する
     # 作成したタスクオブジェクトを各テストケースで呼び出せるようにインスタンス変数に代入
-    @task = FactoryBot.create(:task, name: 'task')
+    @task = FactoryBot.create(:task, name: 'task', progress: '完了')
     FactoryBot.create(:task, name: '付け加えた名前１')
     FactoryBot.create(:task, name: '付け加えた名前２')
     FactoryBot.create(:second_task, name: '付け加えた名前３', detail: '付け加えたコンテント')
@@ -59,21 +59,56 @@ RSpec.describe 'タスク管理機能', type: :system do
   describe 'タスク一覧' do
     context '最終期限ボタンを押したら' do
       before do
-        # 1 全てのタスクを取得してdead  lineを一日置きになる様に設定する
+        # 1 全てのタスクを取得してdeadlineを一日置きになる様に設定する
         all_tasks = Task.all
         all_tasks.each_with_index do |task, i|
           task.deadline = Date.today + i
           task.save
         end
       end
-      it '期日が迫っている日から見せる' do
+      it '期日が迫っている日から見せまた、progressが登録されている' do
         visit tasks_path
         # 2 ボタンを押す
         click_on "終了期限でソートする"
         # 3 評価する
         sleep 3
         save_and_open_page
+
+        # expect(page).to have_content 0
       end
     end
   end
+
+  describe 'タスク一覧' do
+    context '進捗Progress検索で、完了、を指定後、検索を押したら' do
+    it '完了タスクだけ表示' do
+        visit tasks_path
+        all_tasks = Task.all
+        find("option[value='2']").select_option     
+
+        click_on "検索"
+
+        sleep 3
+        save_and_open_page
+      end
+    end
+  end
+
+  describe 'タスク一覧' do
+    context 'タスク名Name検索で、付け加えた名前１、を指定後、検索を押したら' do
+    it 'タスク名、付け加えた名前１、だけを表示' do
+        visit tasks_path
+        all_tasks = Task.all
+        # input[value] = "付け加えた名前１"
+        # <input type="submit"> = "付け加えた名前１"
+        
+        fill_in "task_name", with: "付け加えた名前１"
+        click_on "検索"
+        
+        sleep 3
+        save_and_open_page
+      end
+    end
+  end
+
 end

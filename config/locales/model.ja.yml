@@ -1,23 +1,22 @@
-ja: 
-  Task:
-    title: タスク一覧
-    name: タスク名
-    detail: タスク詳細
-    editing: タスク編集
-    new: 新しいタスク追加
-    deadline: タスク期日
-    progress: タスク進捗
+ja:
   activerecord:
-    # models:
-    #   name: "タスク名1"
-    #   detail: "タスク詳細1"
+    models:
+      task: タスク
+      user: ユーザー
     attributes:
       task:
-        name: "タスク名"
-        detail: "タスク詳細"
-        deadline: "期日"
-        progress: "進捗"
-        
-      
-  
-    
+        name: タスク名
+        detail: タスク詳細
+        progress: 進捗5
+        priority: 優先度
+        expired_at: 終了期限
+        created_at: 登録日時
+        updated_at: 更新日時
+      user:
+        name: 名前
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: パスワード(確認)
+        admin: 管理者権限
+        created_at: 登録日時
+        updated_at: 更新日時        

@@ -3,10 +3,13 @@ class TasksController < ApplicationController
 
   # GET /tasks
   def index
+    @tasks = Task.new
     if params[:sort_expired] == "true"  
       @tasks = Task.all.order(deadline: :ASC)
+
     elsif params[:sort_priority] == "true"
      @tasks = Task.all.order(priority: :DESC)
+
     elsif params[:task]
       name = params[:task][:name]
       progress = params[:task][:progress]
