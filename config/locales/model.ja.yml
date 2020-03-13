@@ -7,7 +7,7 @@ ja:
       task:
         name: タスク名
         detail: タスク詳細
-        progress: 進捗5
+        progress: 進捗状態
         priority: 優先度
         expired_at: 終了期限
         created_at: 登録日時

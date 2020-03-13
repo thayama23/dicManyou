@@ -3,7 +3,7 @@ class TasksController < ApplicationController
 
   # GET /tasks
   def index
-    @tasks = Task.new
+    @tasks = Task.all.order(created_at: :desc)
     if params[:sort_expired] == "true"  
       @tasks = Task.all.order(deadline: :ASC)
 
@@ -17,6 +17,8 @@ class TasksController < ApplicationController
     else
       @tasks = Task.all.order(created_at: :desc)
     end
+    @tasks = @tasks.page(params[:page]).per(5)# = Task.new.page(params[:page]).per(10)
+
 
     # if params[:task].present?
     #   if params[:task][:name].present? && params[:task][:progress].present?

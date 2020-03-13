@@ -2,6 +2,8 @@
 
 <h1><%= t('Task.title') %> </h1>
 
+<%= link_to 'New Task', new_task_path %>
+<br>
 <%= form_with(model: @tasks, url: tasks_path, method: :get, local: true) do |form| %>
   <div class="field">
     <%= form.label t("activerecord.attributes.task.name") %>
@@ -44,9 +46,12 @@
   </tbody>
 </table>
 
-<br>
-<%= link_to "終了期限でソートする", tasks_path(sort_expired: "true") %>
-<br>
-<%= link_to "優先度でソートする", tasks_path(sort_priority: "true") %>
-<br>
-<%= link_to 'New Task', new_task_path %>
+<div class = "sorting_and_paginate">
+  <br>
+  <%= link_to "終了期限でソートする", tasks_path(sort_expired: "true") %>
+  <br>
+  <%= link_to "優先度でソートする", tasks_path(sort_priority: "true") %>
+
+  <br>
+  <%= paginate @tasks %>
+</div>
