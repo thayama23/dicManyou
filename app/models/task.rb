@@ -24,10 +24,10 @@ class Task < ApplicationRecord
 
   # scope :search_task, -> (keyword) { search_name("%#{[:task][:name]}%").and(search_progress("%#{[:task][:progress]}%")) if keyword.present? }
 
-  scope :search_name, -> (name) { where(name: name) if name.present? }
+  # scope :search_name, -> (name) { where(name: name) if name.present? }
 
-  # scope :search_name, -> (name) { where('name LIKE ?', "%#[:name]}%") if name.present? }
-
+  # scope :search_name, -> (name) { where('name LIKE ?', "%#{[:name]}%") if name.present? }
+  scope :search_name, -> (name) { where("name LIKE ?", "%#{(name)}%") if name.present? }
   scope :search_progress, -> (progress) { where(progress: progress) if progress.present? }
 
 

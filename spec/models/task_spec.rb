@@ -45,13 +45,13 @@ RSpec.describe Task, type: :model do
 
   describe "scope" do
     it 'to include task_name, aaaaa' do
-      task_name = Task.create(name: "aaaaa")
-      expect(Task.search_name("aaaaa")).to include Task.find_by(name: "aaaaa") 
+      task_name = Task.create(name: "aaaaa", detail: "bbbbb", progress: "完了")
+      expect(Task.search_name("aa")).to include Task.find_by(name: "aaaaa") 
     end 
       
     it 'to include task_progress, 完了' do
-      task_progress = Task.create(progress: "完了")
-      expect (Task.search_progress("完了")).to include Task.find_by(progress: "完了")
+      task_progress = Task.create(name: "aaaaa", detail: "bbbbb", progress: "完了")
+      expect(Task.search_progress("完了")).to include Task.find_by(progress: "完了")
     end
 
   end
