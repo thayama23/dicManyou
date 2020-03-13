@@ -10,5 +10,15 @@
   <%= @task.detail %>
 </p>
 
+<p>
+  <strong>　<%= t('Task.deadline') %>:</strong>
+  <%= @task.deadline %>
+</p>
+
+<p>
+  <strong>　<%= t('Task.progress') %>:</strong>
+  <%= @task.progress %>
+</p>
+
 <%= link_to 'Edit', edit_task_path(@task) %> |
 <%= link_to 'Back', tasks_path %>

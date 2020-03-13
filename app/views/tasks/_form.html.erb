@@ -21,7 +21,25 @@
     <%= form.text_area :detail %>
   </div>
 
+ <div class="field">
+    <%= form.label :deadline %>
+    <%= form.date_field :deadline %>
+  </div>
+
+  <div class="field">
+    <%= form.label :progress %>
+    <%= form.select :progress, Task.progresses.keys %>
+  </div>
+
+  <div class="field">
+    <%= form.label :priority %>
+    <%= form.select :priority, Task.priorities.keys %>
+  </div> 
+
   <div class="actions">
     <%= form.submit %>
   </div>
+
 <% end %>
+
+

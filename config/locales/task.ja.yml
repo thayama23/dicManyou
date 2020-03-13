@@ -1,0 +1,10 @@
+ja:
+  Task:
+    title: タスク一覧
+    name: タスク名
+    detail: タスク詳細
+    editing: タスク編集
+    new: 新しいタスク追加
+    deadline: タスク期日
+    progress: タスク進捗
+   
