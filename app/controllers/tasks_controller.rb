@@ -3,21 +3,42 @@ class TasksController < ApplicationController
 
   # GET /tasks
   def index
-    @tasks = Task.all.order(created_at: :desc)
+    # @tasks = Task.all.order(created_at: :desc)
+    
+    # @tasks = Task.where(user_id: current_user)
+      @tasks = current_user.tasks
+    
     if params[:sort_expired] == "true"  
-      @tasks = Task.all.order(deadline: :ASC)
+      @tasks = @tasks.order(deadline: :ASC)
 
     elsif params[:sort_priority] == "true"
-     @tasks = Task.all.order(priority: :DESC)
+     @tasks = @tasks.order(priority: :DESC)
 
     elsif params[:task]
       name = params[:task][:name]
       progress = params[:task][:progress]
-      @tasks = Task.search_name(name).search_progress(progress)
+      @tasks = @tasks.search_name(name).search_progress(progress)
     else
-      @tasks = Task.all.order(created_at: :desc)
+      @tasks = @tasks.all.order(created_at: :desc)
     end
     @tasks = @tasks.page(params[:page]).per(5)# = Task.new.page(params[:page]).per(10)
+
+    # @tasks = current_user.tasks
+
+    # if params[:sort_expired] == "true" 
+    #   @tasks = @tasks.order(deadline: :ASC)
+    # elsif params[:sort_priority] == "true"
+    #  @tasks = @tasks.order(priority: :DESC)
+    # elsif params[:task]
+    #   name = params[:task][:name]
+    #   progress = params[:task][:progress]
+    #   @tasks = @tasks.search_name(name).search_progress(progress)
+    # else
+    #   @tasks = @tasks.all.order(created_at: :desc)
+    # end
+    # @tasks = @tasks.page(params[:page]).per(5)# = Task.new.page(params[:page]).per(10)
+
+
 
 
     # if params[:task].present?
@@ -39,9 +60,18 @@ class TasksController < ApplicationController
 
   # GET /tasks/new
   def new
-    @task = Task.new
-  end
+    # @task = Task.new
 
+    if current_user == nil
+      redirect_to new_user_path, notice: "ログインするか新規ユーザー設定後Taskをご使用下さい。"
+    else
+      # User has_many Tasks だった場合
+      # @task = current_user.tasks.build
+      # render :new
+      @task = Task.new
+    end
+  end
+ 
   # GET /tasks/1/edit
   def edit
   end
@@ -49,10 +79,13 @@ class TasksController < ApplicationController
   # POST /tasks
   def create
     @task = Task.new(task_params)
-
+    @task.user_id = current_user.id
+    
+    # @task = current_user.tasks.build(task_params)
     if @task.save
       redirect_to @task, notice: 'Task was successfully created.'
     else
+      # @task
       render :new
     end
   end
@@ -82,4 +115,5 @@ class TasksController < ApplicationController
     def task_params
       params.require(:task).permit(:name, :detail, :deadline, :progress, :priority)
     end
+
 end

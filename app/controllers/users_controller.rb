@@ -6,7 +6,9 @@ class UsersController < ApplicationController
     def create
         @user = User.new(user_params)
         if @user.save
+            session[:user_id] = @user.id
             redirect_to user_path(@user.id)
+            # redirect_to tasks_path(@user.id)
         else
             render :new
         end
