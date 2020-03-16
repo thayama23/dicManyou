@@ -3,43 +3,29 @@ class TasksController < ApplicationController
 
   # GET /tasks
   def index
+    if logged_in?
     # @tasks = Task.all.order(created_at: :desc)
-    
     # @tasks = Task.where(user_id: current_user)
-      @tasks = current_user.tasks
-    
-    if params[:sort_expired] == "true"  
-      @tasks = @tasks.order(deadline: :ASC)
+        @tasks = current_user.tasks
+      
+      if params[:sort_expired] == "true"  
+        @tasks = @tasks.order(deadline: :ASC)
 
-    elsif params[:sort_priority] == "true"
-     @tasks = @tasks.order(priority: :DESC)
+      elsif params[:sort_priority] == "true"
+      @tasks = @tasks.order(priority: :DESC)
 
-    elsif params[:task]
-      name = params[:task][:name]
-      progress = params[:task][:progress]
-      @tasks = @tasks.search_name(name).search_progress(progress)
+      elsif params[:task]
+        name = params[:task][:name]
+        progress = params[:task][:progress]
+        @tasks = @tasks.search_name(name).search_progress(progress)
+      else
+        @tasks = @tasks.all.order(created_at: :desc)
+      end
+      @tasks = @tasks.page(params[:page]).per(5)# = Task.new.page(params[:page]).per(10)
+
     else
-      @tasks = @tasks.all.order(created_at: :desc)
+      redirect_to new_user_path
     end
-    @tasks = @tasks.page(params[:page]).per(5)# = Task.new.page(params[:page]).per(10)
-
-    # @tasks = current_user.tasks
-
-    # if params[:sort_expired] == "true" 
-    #   @tasks = @tasks.order(deadline: :ASC)
-    # elsif params[:sort_priority] == "true"
-    #  @tasks = @tasks.order(priority: :DESC)
-    # elsif params[:task]
-    #   name = params[:task][:name]
-    #   progress = params[:task][:progress]
-    #   @tasks = @tasks.search_name(name).search_progress(progress)
-    # else
-    #   @tasks = @tasks.all.order(created_at: :desc)
-    # end
-    # @tasks = @tasks.page(params[:page]).per(5)# = Task.new.page(params[:page]).per(10)
-
-
-
 
     # if params[:task].present?
     #   if params[:task][:name].present? && params[:task][:progress].present?

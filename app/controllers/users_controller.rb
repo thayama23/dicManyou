@@ -23,6 +23,10 @@ class UsersController < ApplicationController
 
     def show
         @user = User.find(params[:id])
+# binding.irb
+        unless @user == current_user ##こう(true)でなければ、
+            redirect_to tasks_path, notice: '他の人のページへアクセスは出来ません!'
+        end
     end
 
     def update
