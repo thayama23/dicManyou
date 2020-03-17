@@ -1,0 +1,53 @@
+<h2>ユーザー情報を編集する</h2>
+
+  <%= form_with(model: @user, local: true ) do |form| %>
+    <% if @user.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= @user.errors.count %>件のエラーがあります。</h2>
+        <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="user_name">
+      <%= form.label :name %>
+      <%= form.text_field :name %>
+    </div>
+    <div class="user_email">
+      <%= form.label :email %>
+      <%= form.email_field :email %>
+    </div>
+
+    <div class="user_password">
+      <%= form.label :password %>
+      <%= form.password_field :password %>
+    </div>
+    <div class="user_password">
+      <%= form.label :password_confirmation %>
+      <%= form.password_field :password_confirmation %>
+    </div>
+
+    <div class="user_admin">
+      <%= form.label :admin %>
+      <%= form.boolean :admin %>
+    </div>
+
+    <br>
+    
+    <div class="field">
+      <%= form.label :photo %>
+      <!-- 確認画面から新規作成画面に戻った時に、 -->
+      <!-- アップロードした画像を表示させるための記述 -->
+
+      <%= form.file_field :photo %>
+      <%= form.hidden_field :photo_cache %>
+    </div>
+
+    <%= form.submit %>
+  <% end %>
+
+  <br>
+  <%= link_to "管理者一覧画面にもどる", users_path %>
