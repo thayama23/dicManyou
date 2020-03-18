@@ -1,5 +1,5 @@
 class Admin::UsersController < ApplicationController
-    # before_action :set_user, only: [:show, :edit, :update, :destroy]
+    before_action :set_user, only: [:show, :edit, :update, :destroy]
 
     def index
       @users = User.all
@@ -19,11 +19,9 @@ class Admin::UsersController < ApplicationController
     end
 
     def edit
-        @user = User.find(params[:id])
     end
 
     def show
-      @user = User.find(params[:id])
       @tasks = @user.tasks
     
         # unless @user == current_user ##こう(true)でなければ、
@@ -32,7 +30,6 @@ class Admin::UsersController < ApplicationController
     end
 
     def update
-        @user = User.find(params[:id])
         if @user.update(user_params)
           redirect_to user_path(@user.id), notice: "ユーザー詳細を編集しました！"
         else
@@ -41,12 +38,18 @@ class Admin::UsersController < ApplicationController
     end
 
     def destroy
+      @user.destroy
+      redirect_to admin_users_path, notice: 'ユーザーは削除されました。'
     end
 
     private
 
+    def set_user
+      @user = User.find(params[:id])
+    end
+
     def user_params
         params.require(:user).permit(:name, :email, :password,
-            :password_confirmation)
+            :password_confirmation, :admin)
     end
 end
