@@ -1,8 +1,22 @@
 class Admin::UsersController < ApplicationController
     before_action :set_user, only: [:show, :edit, :update, :destroy]
+    before_action :require_login
 
     def index
       @users = User.all
+      # if logged_in? && current_user.admin?
+      #   redirect_to admin_users_path
+      # # elsif logged_in?
+      # #   redirect_to user_path(current_user), notice: '管理者権限ページへアクセスは出来ません!'
+      # else
+      #   redirect_to user_path(current_user), notice: '管理者権限ページへアクセスは出来ません!'
+      # end
+    
+
+      unless current_user.admin?
+        redirect_to user_path(current_user), notice: '管理者権限ページへアクセスは出来ません!'
+      end
+
     end
 
     def create
@@ -38,8 +52,13 @@ class Admin::UsersController < ApplicationController
     end
 
     def destroy
-      @user.destroy
-      redirect_to admin_users_path, notice: 'ユーザーは削除されました。'
+      # @user.destroy
+      # redirect_to admin_users_path, notice: 'ユーザーは削除されました。'
+      if @user.destroy
+        redirect_to admin_users_path, notice: 'ユーザーは削除されました。'
+      else
+        redirect_to admin_users_path, notice: 'ユーザーは削除出来ませんでした'
+      end
     end
 
     private

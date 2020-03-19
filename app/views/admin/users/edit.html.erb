@@ -1,6 +1,6 @@
 <h2>ユーザー情報を編集する</h2>
 
-  <%= form_with(model: @user, url: admin_user_path, local: true, ) do |form| %>
+  <%= form_with(model: [:admin, @user], local: true, ) do |form| %>
     <% if @user.errors.any? %>
       <div id="error_explanation">
         <h2><%= @user.errors.count %>件のエラーがあります。</h2>

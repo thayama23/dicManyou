@@ -4,6 +4,10 @@ module SessionsHelper
     end
 
     def logged_in?
-        current_user.present?
+      current_user.present?
+    end
+
+    def require_login
+      redirect_to new_user_path unless current_user
     end
 end

@@ -16,7 +16,6 @@ class UsersController < ApplicationController
 
     def new
         @user = User.new
-        binding.irb
     end
 
     def edit
@@ -40,7 +39,7 @@ class UsersController < ApplicationController
 
     def user_params
         params.require(:user).permit(:name, :email, :password,
-            :password_confirmation)
+            :password_confirmation, :admin)
     end
 
 end
