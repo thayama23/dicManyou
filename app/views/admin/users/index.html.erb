@@ -5,6 +5,7 @@
   <thead>
     <tr>
       <th>User name</th>
+      <th>Number of tasks </th>
     </tr>
   </thead>
 
@@ -12,6 +13,7 @@
     <% @users.each do |user| %>
       <tr class = "user_row">
         <td><%= user.name %></td>
+        <td><%= user.tasks.count %></td>
         <td><%= link_to 'Show', admin_user_path(user) %></td>
         <td><%= link_to 'Edit', edit_admin_user_path(user) %></td>
         <td><%= link_to 'Destroy', admin_user_path(user), method: :delete, data: { confirm: 'Are you sure?' } %></td>
