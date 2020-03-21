@@ -4,21 +4,9 @@ class Admin::UsersController < ApplicationController
 
     def index
       @users = User.all
-
-      # if logged_in? && current_user.admin?
-      #   redirect_to admin_users_path
-      # # elsif logged_in?
-      # #   redirect_to user_path(current_user), notice: '管理者権限ページへアクセスは出来ません!'
-      # else
-      #   redirect_to user_path(current_user), notice: '管理者権限ページへアクセスは出来ません!'
-      # end
-    
-
       unless current_user.admin?
         redirect_to user_path(current_user), notice: '管理者権限ページへアクセスは出来ません!'
       end
-
-    # binding.irb      
     end
 
     def create
