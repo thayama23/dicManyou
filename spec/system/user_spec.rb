@@ -6,135 +6,160 @@ RSpec.describe '新規登録・ログイン画面', type: :system do
         # 作成したタスクオブジェクトを各テストケースで呼び出せるようにインスタンス変数に代入
         # @task = FactoryBot.create(:task, name: 'task', progress: '完了')
         FactoryBot.create(:user)
-        FactoryBot.create(:second_user)
-        
+        FactoryBot.create(:second_user)   
     end
 
     describe '新規登録画面' do
       context '必要項目を入力して、登録するボタンを押した場合新規登録される' do
         it "新規登録完了" do
           visit new_user_path
-          
           fill_in 'user_name', with: 'me'
           fill_in 'user_email', with: 'me@example.com'
           fill_in 'user_password', with: 'me@example.com'
           fill_in 'user_password_confirmation', with: 'me@example.com'
           # fill_in 'admin', with: true
           click_button 'Create my account'
-
-          sleep 3
+          # sleep 3
           visit user_path(User.last.id)
-          
           expect(page).to have_content('meのページ')
+          # save_and_open_page
+        end
+        it "ユーザーがログインしていないのにタスク一覧のページに飛ぼうとした場合ログイン画面に遷移するこ" do
+          visit new_user_path
+          expect(page).to have_content('新規ユーザー登録かログインして下さい!')
+        end
+        it "自分の詳細画面(マイページ)に飛べること" do
+          visit new_user_path
+          fill_in 'user_name', with: 'me'
+          fill_in 'user_email', with: 'me@example.com'
+          fill_in 'user_password', with: 'me@example.com'
+          fill_in 'user_password_confirmation', with: 'me@example.com'
+          click_button 'Create my account'
+          visit user_path(User.last.id)
+          expect(page).to have_content('meのページ')
+        end
+        it "一般ユーザーが他人の詳細画面に飛ぶとタスク一覧ページに遷移すること" do
+          visit new_user_path
+          fill_in 'user_name', with: 'me'
+          fill_in 'user_email', with: 'me@example.com'
+          fill_in 'user_password', with: 'me@example.com'
+          fill_in 'user_password_confirmation', with: 'me@example.com'
+          click_button 'Create my account'
+          visit user_path(User.first.id)
+          expect(page).to have_content('他の人のページへアクセスは出来ません!')
+        end
+        it "ログアウトができること" do
+          visit new_user_path
+          fill_in 'user_name', with: 'me'
+          fill_in 'user_email', with: 'me@example.com'
+          fill_in 'user_password', with: 'me@example.com'
+          fill_in 'user_password_confirmation', with: 'me@example.com'
+          click_button 'Create my account'
+          click_link 'Logout'
           save_and_open_page
+          sleep 3
+          expect(page).to have_content('Log in')
         end
       end
     end
 
-    describe '管理者専用・ユーザー一覧' do
-      context '管理者権限付与者がログインした場合,管理者専用管理者専用・ユーザー一覧' do
-        it "へ,ログイン出来・閲覧可能" do
-          user = FactoryBot.create(:second_user)
-          visit admin_users_path
+    # describe '管理画面のテスト' do
+    #   context '管理者がいること' do
+    #     it "ログアウトができること" do
+    #       visit new_session_path
+    #       fill_in "session_email", with: ""
+    #       fill_in "session_password", with: ""
+    #       sleep 1
+    #       save_and_open_page
+    #       fill_in "session_email", with: "tester1@example.com"
+    #       fill_in "session_password", with: "00000000"
+    #       save_and_open_page
+    #       click_button 'Log in'
+    #       save_and_open_page
+    #       # expect(page).to have_content('Logout')
+    #       # sleep 3
+    #       # expect(page).to have_content('タスク一覧')
+    #     end
+    #   end
+    # end
+
+    # describe '既存ユーザーログイン' do
+    #   context '必要項目を入力、log inボタン押した後' do
+    #     it "ログイン完了、そしてマイページにも移動出来、またログアウトも確認" do
+    #       FactoryBot.create(:user)
+    #       FactoryBot.create(:second_user)  
+    #       visit new_session_path
+    #       fill_in 'session[email]', with: 'tester1@example.com'
+    #       fill_in 'session[password]', with: '00000000'
+    #       click_button 'Log in'
+    #       save_and_open_page
+    #       # expect(page).to have_content('Logout')
+    #       # sleep 3
+    #       # expect(page).to have_content('タスク一覧')
+
+    #       # sleep 3
+    #       # click_button 'Profile'
+    #       # expect(page).to have_content('tester1のページ')
+
+    #       # sleep 3
+    #       # click_button 'Logout'
+    #       # expect(page).to have_content('ログアウトしました')
+    #     end
+    #   end
+    # end    
+
+
+    # describe '既存ユーザーログイン' do
+    #   context '必要項目を入力、log inボタン押した後' do
+    #     it "ログイン完了、そしてマイページにも移動出来、またログアウトも確認" do
+    #       visit new_session_path
           
-          expect(page).to have_content('管理画面のユーザー一覧画面')
-        end
+    #       fill_in 'email', with: 'tester1@example.com'
+    #       fill_in 'password', with: 'tester1@example.com'
+    #       click_button 'Log in'
 
-        it "内で,　新規ユーザー作成が出来る"
-          fill_in 'user_name', with: 'you'
-          fill_in 'user_email', with: 'you@example.com'
-          fill_in 'user_password', with: 'you@example.com'
-          fill_in 'user_password_confirmation', with: 'you@example.com'
-          fill_in 'admin', with: false
-          click_button 'Create my account'
-          expect(page).to have_content('youのページ')
-        end
-
-        it "内で,　既存ユーザーの編集が出来る"
-          fill_in 'user_email', with: 'new_you@example.com'
-          click_button 'Create my account'
-          expect(page).to have_content('ユーザー詳細を編集しました！')
-        end
-
-        it "内で,　既存ユーザーの削除が出来る"
-          click_button.(User.last.id) 'Destroy'
-          expect(page).to have_content('ユーザー詳細を編集しました！')
-        end        
-
+    #       sleep 3
+          
         
 
-      # context '必要項目を未記入で登録するボタンを押した場合新規登録されない' do
-      #   it "ユーザー名が未記入のとき" do
-      #     visit signup_path
-      #     fill_in 'ユーザー名', with: ''
-      #     fill_in 'メールアドレス', with: 'tester@example.com'
-      #     fill_in 'パスワード', with: 'password'
-      #     fill_in 'パスワード（確認）', with: 'password'
-      #     click_button '登録する'
-      #     expect(page).to have_content('ユーザー名を入力してください')
-      #   end
-      #   it "メールアドレスが未記入のとき" do
-      #     visit signup_path
-      #     fill_in 'ユーザー名', with: 'tester'
-      #     fill_in 'メールアドレス', with: ''
-      #     fill_in 'パスワード', with: 'password'
-      #     fill_in 'パスワード（確認）', with: 'password'
-      #     click_button '登録する'
-      #     expect(page).to have_content('メールアドレスを入力してください')
-      #   end
-      #   it "パスワードは6文字以上で入力されていないとき" do
-      #     visit signup_path
-      #     fill_in 'ユーザー名', with: 'tester'
-      #     fill_in 'メールアドレス', with: 'tester@example.com'
-      #     fill_in 'パスワード', with: 'pass'
-      #     fill_in 'パスワード（確認）', with: 'hoge'
-      #     click_button '登録する'
-      #     expect(page).to have_content('パスワードは6文字以上で入力してください')
-      #   end
-      #   it "確認用パスワードとパスワードの入力が一致しないとき" do
-      #     visit signup_path
-      #     fill_in 'ユーザー名', with: 'tester'
-      #     fill_in 'メールアドレス', with: 'tester@example.com'
-      #     fill_in 'パスワード', with: 'password'
-      #     fill_in 'パスワード（確認）', with: 'hogehoge'
-      #     click_button '登録する'
-      #     expect(page).to have_content('パスワード（確認）とパスワードの入力が一致しません')
-      #   end
-      #   it "メールアドレスがすでに存在しているとき" do
-      #     user = FactoryBot.create(:user)
-      #     visit signup_path
-      #     fill_in 'ユーザー名', with: 'tester'
-      #     fill_in 'メールアドレス', with: 'tester@example.com'
-      #     fill_in 'パスワード', with: 'password'
-      #     fill_in 'パスワード（確認）', with: 'password'
-      #     click_button '登録する'
-      #     expect(page).to have_content('メールアドレスはすでに存在します')
-      #   end
-      # end
-      # context 'ログイン画面で必要項目を入力して、ログインボタンを押した場合' do
-      #   it "ログインされること" do
-      #     user = FactoryBot.create(:user)
-      #     visit login_path
-      #     fill_in 'メールアドレス', with: user.email
-      #     fill_in 'パスワード', with: user.password
-      #     click_button 'ログインする'
-      #     expect(page).to have_content('ログインしました。')
-      #   end
-      # end
-      # context '最後の一人の管理者を削除できない' do
-      #   it "削除できない" do
-      #     admin = FactoryBot.create(:admin)
-      #     visit login_path
-      #     fill_in 'メールアドレス', with: admin.email
-      #     fill_in 'パスワード', with: admin.password
-      #     click_button 'ログインする'
-      #     click_link('ユーザー一覧')
-      #     click_link('削除')
-      #     page.driver.browser.switch_to.alert.accept
-      #     expect(page).to have_content('管理者権限者がいなくなるので削除できません')
-      #   end
-      end
-    end
 
+    #     end
+    #   end
+    # end
 
-  end
+    # describe '管理者専用・ユーザー一覧' do
+    #   context '管理者権限付与者がログインした場合,管理者専用管理者専用・ユーザー一覧' do
+    #     it "へ,ログイン出来・閲覧可能" do
+    #       user = FactoryBot.create(:second_user)
+    #       visit admin_users_path
+          
+    #       expect(page).to have_content('管理画面のユーザー一覧画面')
+    #     end
+
+    #     it "内で,　新規ユーザー作成が出来る" do
+    #       fill_in 'user_name', with: 'you'
+    #       fill_in 'user_email', with: 'you@example.com'
+    #       fill_in 'user_password', with: 'you@example.com'
+    #       fill_in 'user_password_confirmation', with: 'you@example.com'
+    #       fill_in 'admin', with: false
+    #       click_button 'Create my account'
+    #       expect(page).to have_content('youのページ')
+    #     end
+
+    #     it "内で,　既存ユーザーの編集が出来る" do
+    #       visit admin_users_path
+    #       click_button 'Destroy'
+    #       fill_in 'user_email', with: 'new_you@example.com'
+    #       click_button 'Create my account'
+    #       expect(page).to have_content('ユーザー詳細を編集しました！')
+    #     end
+
+    #     it "内で,　既存ユーザーの削除が出来る" do
+    #       click_button 'Destroy'
+    #       expect(page).to have_content('ユーザー詳細を編集しました！')
+    #     end        
+    #   context '必要項目を未記入で登録するボタンを押した場合新規登録されない' do
+    #   end
+    # end
+
+end
