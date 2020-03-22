@@ -89,7 +89,7 @@ RSpec.describe 'タスク管理機能', type: :system do
         click_on "検索"
 
         sleep 3
-        binding.irb
+        
         expect(find("tbody").text).to have_content "完了"
         expect(find("tbody").text).not_to have_content "着手中"
         expect(find("tbody").text).not_to have_content "未着手"
