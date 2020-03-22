@@ -38,7 +38,7 @@ class Admin::UsersController < ApplicationController
       if User.where(admin: :true).count == 0
         @user.update(admin: :true)
         redirect_to admin_users_path
-        flash[:warning] = "管理者は１名以下なので編集できませんでした"
+        flash[:warning] = "管理者は編集できました"
       elsif @user.save == false
         flash[:danger] = "管理者は１名以下なので編集できませんでした"
         render :edit
