@@ -34,11 +34,25 @@ class Admin::UsersController < ApplicationController
     end
 
     def update
-        if @user.update(user_params)
-          redirect_to user_path(@user.id), notice: "ユーザー詳細を編集しました！"
-        else
-          render :edit
-        end
+      @user.update(user_params)
+      if User.where(admin: :true).count == 0
+        @user.update(admin: :true)
+        redirect_to admin_users_path
+        flash[:warning] = "管理者は１名以下なので編集できませんでした"
+      elsif @user.save == false
+        flash[:danger] = "管理者は１名以下なので編集できませんでした"
+        render :edit
+      elsif User.where(admin: :true).count >= 1
+        redirect_to admin_users_path
+        flash[:info] = "ユーザー詳細を編集しました！"
+      end
+
+        # if @user.update(user_params)
+        #   redirect_to user_path(@user.id), notice: ""
+        # else
+        #   flash.now[:danger] = ""
+        #   render :edit
+        # end
     end
 
     def destroy

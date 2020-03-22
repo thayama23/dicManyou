@@ -10,4 +10,8 @@ module SessionsHelper
     def require_login
       redirect_to new_user_path unless current_user
     end
+
+    def forbid_login_user
+      redirect_to tasks_path, notice: 'すでにログインしています' if current_user
+    end
 end
