@@ -1,0 +1,55 @@
+9d11f33dd6f6b28227cf0813773cc84fb0248c4f		branch '1-7-stable' of https://github.com/sass/sassc-ruby
+7c627a67900b98485528149124215af4ea38d575		branch 'libsass_3_3_1' of https://github.com/sass/sassc-ruby
+0cb5c9e635bf94707c920227d4bd20c51e37922a		branch 'master' of https://github.com/sass/sassc-ruby
+250bdc4a35eb0d30a410e4e509e24617fee4d7ef		branch 'rmb/relax_ffi_dep' of https://github.com/sass/sassc-ruby
+c354c650f18e465ba90d73431859e6d61bc54c1c		branch 'rmb/update_libsass_3_5_4' of https://github.com/sass/sassc-ruby
+6ced6c40452620262d5c129d6d6e857819159c9e		branch 'ruby_versions' of https://github.com/sass/sassc-ruby
+9518b887c0bbd856edb67e5cf2518176216cfe78		branch 'upgrade_libsass' of https://github.com/sass/sassc-ruby
+c9f3e28bac18a253b6eda4797b698a9bfe407268	not-for-merge	tag 'v0.0.1' of https://github.com/sass/sassc-ruby
+f1850192d44f35aea7d52c170e64adf515035327	not-for-merge	tag 'v0.0.10' of https://github.com/sass/sassc-ruby
+d52c8dc636f67fc41683dda181242d38b0f1a5bc	not-for-merge	tag 'v0.0.11' of https://github.com/sass/sassc-ruby
+fe9cd9d3e1a4f87c52ab95c723f096b7a75fba9f	not-for-merge	tag 'v0.0.2' of https://github.com/sass/sassc-ruby
+6f8b381bf56d9ad81287db9189385dd2473c89e1	not-for-merge	tag 'v0.0.4' of https://github.com/sass/sassc-ruby
+e0b46749a8e4941c70065a37f87c957056ed9d5f	not-for-merge	tag 'v0.0.5' of https://github.com/sass/sassc-ruby
+1bfd2651b0507c73c7a3f66986558c3bd1365bc8	not-for-merge	tag 'v0.0.6' of https://github.com/sass/sassc-ruby
+733886592aab5f6d8506096d18858b457eeb1873	not-for-merge	tag 'v0.0.7' of https://github.com/sass/sassc-ruby
+8a4c1bc35b046a66128d253d230813e1537243e2	not-for-merge	tag 'v0.0.8' of https://github.com/sass/sassc-ruby
+36548bc865cc0e1c70fa03b723a4ccf52293c426	not-for-merge	tag 'v0.0.9' of https://github.com/sass/sassc-ruby
+3ffecd4552aff42747ca92c1b993c4100c7bd291	not-for-merge	tag 'v1.0.0' of https://github.com/sass/sassc-ruby
+62916ae112925eeb92da22b4ba773ed0446ce064	not-for-merge	tag 'v1.1.0' of https://github.com/sass/sassc-ruby
+6e61d060b453d97b3a73d8d2b1267c6ccf148578	not-for-merge	tag 'v1.1.1' of https://github.com/sass/sassc-ruby
+9bb3cd2f816637db2bdabec4a425eaecb6effc16	not-for-merge	tag 'v1.1.2' of https://github.com/sass/sassc-ruby
+1383f2358456eb23c51610677c9d4b8162101327	not-for-merge	tag 'v1.10.0' of https://github.com/sass/sassc-ruby
+3cab02a5946cd94f781ff45751047e579e49ffd1	not-for-merge	tag 'v1.10.1' of https://github.com/sass/sassc-ruby
+8249fc3b2162fec4fa0ee061dfc6aa5b358143f2	not-for-merge	tag 'v1.11.0' of https://github.com/sass/sassc-ruby
+07b8ec29db8cc436cf5839febc1a97a61e853ab8	not-for-merge	tag 'v1.11.1' of https://github.com/sass/sassc-ruby
+c010dc9fde0ca1d9374c8402518a6c535e9bf092	not-for-merge	tag 'v1.11.2' of https://github.com/sass/sassc-ruby
+04517c80b3fc2e0e47c99b14e82d97bdb335467a	not-for-merge	tag 'v1.11.3' of https://github.com/sass/sassc-ruby
+2e7adf767ccc458f46a28823ae6c31cbe1604990	not-for-merge	tag 'v1.11.4' of https://github.com/sass/sassc-ruby
+bb32538003bd37d9ef1c538f30c5bbe446d21d3b	not-for-merge	tag 'v1.12.0' of https://github.com/sass/sassc-ruby
+a3e5cce1c5b7dcf1bd74795621757346c77f605a	not-for-merge	tag 'v1.12.1' of https://github.com/sass/sassc-ruby
+fda6b48e9995600a2f158c24f29bd8f07bdfe134	not-for-merge	tag 'v1.2.0' of https://github.com/sass/sassc-ruby
+e6f489f6d58e25e6e882666154088215d95f1b54	not-for-merge	tag 'v1.3.0' of https://github.com/sass/sassc-ruby
+a5b3ffd25095dd53e31a639d45aab35160074176	not-for-merge	tag 'v1.4.0' of https://github.com/sass/sassc-ruby
+9b6aed2cf9b51fabc6f1261e38c12d23fbb54cc2	not-for-merge	tag 'v1.5.0' of https://github.com/sass/sassc-ruby
+ae1c4a60e209737b4dd7a23b983f51df38d9a0dd	not-for-merge	tag 'v1.5.1' of https://github.com/sass/sassc-ruby
+b807771e0fe7008fe4295797313a26b3b6e52b34	not-for-merge	tag 'v1.6.0' of https://github.com/sass/sassc-ruby
+448e65365a35556fb80e3cef83f527cab010b36e	not-for-merge	tag 'v1.7.0' of https://github.com/sass/sassc-ruby
+2256397ec9e0d5debcf85786f5326b0647e258ce	not-for-merge	tag 'v1.7.1' of https://github.com/sass/sassc-ruby
+ae2b9e904c6da084a7d7042f1252eb22f1462eee	not-for-merge	tag 'v1.8.0' of https://github.com/sass/sassc-ruby
+8648253884e39c648782d7228e8b6e6f75b8fbaa	not-for-merge	tag 'v1.8.0.pre1' of https://github.com/sass/sassc-ruby
+b94553f737151d5aabf6ca52d3ce33f075d07e6e	not-for-merge	tag 'v1.8.0.pre2' of https://github.com/sass/sassc-ruby
+389b10e6dd2ea183c0ef5d17e8d93035c2347987	not-for-merge	tag 'v1.8.1' of https://github.com/sass/sassc-ruby
+75cc513331cff16d0eeffe8208d6a17729659e01	not-for-merge	tag 'v1.8.2' of https://github.com/sass/sassc-ruby
+bb89d4f3e4742b1cba3ee68efa864a67d63efb22	not-for-merge	tag 'v1.8.3' of https://github.com/sass/sassc-ruby
+639815fe84108dd233adc5bf604c517956eeb890	not-for-merge	tag 'v1.8.4' of https://github.com/sass/sassc-ruby
+ff567ca9045fd876e30d303b3521165d92904db8	not-for-merge	tag 'v1.8.5' of https://github.com/sass/sassc-ruby
+ae3300302a83658c5398a3bc078d6cf415e532c8	not-for-merge	tag 'v1.9.0' of https://github.com/sass/sassc-ruby
+0a05f508a1a372fa29f9beffd712fd2b2ff23575	not-for-merge	tag 'v2.0.0' of https://github.com/sass/sassc-ruby
+2849c90dfc2c8b4a8ce5e71c4a89dab05323a1e4	not-for-merge	tag 'v2.0.1' of https://github.com/sass/sassc-ruby
+10ef7f9550e6174fe23d2eb705679972e10148be	not-for-merge	tag 'v2.1.0' of https://github.com/sass/sassc-ruby
+13acfb107cd6f9a68370da7616c6c2b53f43d277	not-for-merge	tag 'v2.1.0.pre1' of https://github.com/sass/sassc-ruby
+f45563379a2c7f12453a1174d7fec256c3e022a0	not-for-merge	tag 'v2.1.0.pre2' of https://github.com/sass/sassc-ruby
+393e60ac6032db1f15a9d3fc0f47359daff733e2	not-for-merge	tag 'v2.1.0.pre3' of https://github.com/sass/sassc-ruby
+fd88489edefcfa4e34ce78081ca90f34a73d9aea	not-for-merge	tag 'v2.2.0' of https://github.com/sass/sassc-ruby
+45cb009fc3f93f9cfc5b4cf3e538e4f661e084f2	not-for-merge	tag 'v2.2.1' of https://github.com/sass/sassc-ruby
