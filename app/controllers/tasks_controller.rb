@@ -3,28 +3,43 @@ class TasksController < ApplicationController
 
   # GET /tasks
   def index
-    if logged_in?
+    # ラベルでのソートの時、最初に書いた場所。
+    # @tasks = Task.all
+
+    # @tasks = @tasks.joins(:labels).where(labels: { id: params[:label_id] }) if params[:label_id].present?
+    ##########
+    
+    if current_user.present?
+      # binding.irb
     # @tasks = Task.all.order(created_at: :desc)
     # @tasks = Task.where(user_id: current_user)
-        @tasks = current_user.tasks
+      @tasks = current_user.tasks
       
       if params[:sort_expired] == "true"  
         @tasks = @tasks.order(deadline: :ASC)
 
       elsif params[:sort_priority] == "true"
       @tasks = @tasks.order(priority: :DESC)
+      # binding.irb
 
-      elsif params[:task]
+      elsif params[:task].present?
         name = params[:task][:name]
         progress = params[:task][:progress]
         @tasks = @tasks.search_name(name).search_progress(progress)
+       
+      elsif  params[:label_id].present?
+        @tasks = @tasks.joins(:labels).where(labels: { id: params[:label_id] }) 
+  
       else
         @tasks = @tasks.all.order(created_at: :desc)
+        # binding.irb
       end
       @tasks = @tasks.page(params[:page]).per(5)# = Task.new.page(params[:page]).per(10)
+      # binding.irb
 
     else
       redirect_to new_user_path
+      # binding.irb
     end
 
     # if params[:task].present?
@@ -42,6 +57,8 @@ class TasksController < ApplicationController
 
   # GET /tasks/1
   def show
+    @labels = @task.labels
+
   end
 
   # GET /tasks/new
@@ -99,7 +116,7 @@ class TasksController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def task_params
-      params.require(:task).permit(:name, :detail, :deadline, :progress, :priority)
+      params.require(:task).permit(:name, :detail, :deadline, :progress, :priority, { label_ids: [] })
     end
 
 end

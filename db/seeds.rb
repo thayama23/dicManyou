@@ -10,3 +10,7 @@ User.create!(
     name: "john_example",
     password: "aaaaaa"
  )
+
+# Label.create!(label_name: 'プライベート')
+# Label.create!(label_name: '仕事')
+# Label.create!(label_name: '家族')

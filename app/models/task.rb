@@ -2,6 +2,9 @@ class Task < ApplicationRecord
   belongs_to :user
   # validates :user_id, presence: true 
 
+  has_many :labellings, dependent: :destroy
+  has_many :labels, through: :labellings
+
   enum progress: { "未着手": 0, "着手中": 1, "完了": 2 }
   # enum progress: %i[未着手 着手中 完了]
   enum priority: { "低": 0, "中": 1, "高": 2 }
