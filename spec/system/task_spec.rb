@@ -100,7 +100,7 @@ RSpec.describe 'タスク管理機能', type: :system do
         # 3 評価する
         sleep 3
         save_and_open_page
-
+        expect(page).to have_text /.*付け加えたコメント1.*付け加えたコメント3.*/m
         # expect(page).to have_content 0
       end
     end
@@ -120,12 +120,10 @@ RSpec.describe 'タスク管理機能', type: :system do
         click_on "検索"
 
         sleep 3
-        
-        # expect(find("tbody").text).to have_content "完了"
-        # expect(find("tbody").text).not_to have_content "着手中"
-        # expect(find("tbody").text).not_to have_content "未着手"
-
         save_and_open_page
+        expect(find("tbody").text).to have_content "完了"
+        expect(find("tbody").text).not_to have_content "着手中"
+        expect(find("tbody").text).not_to have_content "未着手"
       end
     end
   end
