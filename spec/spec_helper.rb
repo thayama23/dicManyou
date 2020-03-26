@@ -18,9 +18,9 @@ require 'capybara/rspec'
 RSpec.configure do |config|
 
   # HEADLESS MODE SETTING
-  # config.before(:each, type: :system) do
-  #   driven_by :selenium_chrome_headless
-  # end
+  config.before(:each, type: :system) do
+    driven_by :selenium_chrome_headless
+  end
 
 
   # rspec-expectations config goes here. You can use an alternate
