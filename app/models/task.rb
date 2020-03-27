@@ -2,6 +2,9 @@ class Task < ApplicationRecord
   belongs_to :user
   # validates :user_id, presence: true 
 
+  has_many :labellings, dependent: :destroy
+  has_many :labels, through: :labellings
+
   enum progress: { "未着手": 0, "着手中": 1, "完了": 2 }
   # enum progress: %i[未着手 着手中 完了]
   enum priority: { "低": 0, "中": 1, "高": 2 }
@@ -21,8 +24,5 @@ class Task < ApplicationRecord
   # scope :search_name, -> (name) { where('name LIKE ?', "%#{[:name]}%") if name.present? }
   scope :search_name, -> (name) { where("name LIKE ?", "%#{(name)}%") if name.present? }
   scope :search_progress, -> (progress) { where(progress: progress) if progress.present? }
-
-
-  
 end
 

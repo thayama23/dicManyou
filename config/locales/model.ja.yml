@@ -7,8 +7,10 @@ ja:
       task:
         name: タスク名
         detail: タスク詳細
+        deadline: 期日2
         progress: 進捗状態
         priority: 優先度
+        label: ラベル2
         expired_at: 終了期限
         created_at: 登録日時
         updated_at: 更新日時
