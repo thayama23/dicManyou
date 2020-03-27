@@ -95,8 +95,6 @@ RSpec.describe 'ユーザー登録・ログイン・ログアウト機能', type
       end
 
       it '管理者はユーザーの編集画面からユーザーを編集できること' do
-        
-        
         visit edit_admin_user_path(@user)
         fill_in 'user[name]', with: 'sample2'
         fill_in 'user[email]', with: 'sample2@example.com'

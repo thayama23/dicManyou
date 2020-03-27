@@ -24,8 +24,5 @@ class Task < ApplicationRecord
   # scope :search_name, -> (name) { where('name LIKE ?', "%#{[:name]}%") if name.present? }
   scope :search_name, -> (name) { where("name LIKE ?", "%#{(name)}%") if name.present? }
   scope :search_progress, -> (progress) { where(progress: progress) if progress.present? }
-
-
-  
 end
 
