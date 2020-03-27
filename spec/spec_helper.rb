@@ -18,10 +18,23 @@ require 'capybara/rspec'
 RSpec.configure do |config|
 
   # HEADLESS MODE SETTING
-  config.before(:each, type: :system) do
-    driven_by :selenium_chrome_headless
-  end
+  # config.before(:each, type: :system) do
+  #   driven_by :selenium_chrome_headless
+  # end
 
+  #追記
+  # config.before(:suite) do
+  #   DatabaseCleaner.strategy = :truncation
+  # end
+
+  # config.before(:all) do
+  #   DatabaseCleaner.clean
+  # end
+
+  # config.after(:all) do
+  #   DatabaseCleaner.clean
+  # end
+  #追記終わり
 
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
