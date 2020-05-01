@@ -31,16 +31,14 @@ ActiveRecord::Schema.define(version: 2020_03_23_055446) do
   end
 
   create_table "tasks", force: :cascade do |t|
-    t.string "name"
-    t.text "detail"
+    t.string "name", null: false
+    t.text "detail", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.date "deadline"
     t.integer "progress", default: 0, null: false
     t.integer "priority", default: 0, null: false
-    t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["name", "progress"], name: "index_tasks_on_name_and_progress"
-    t.index ["user_id"], name: "index_tasks_on_user_id"
+    t.index ["name"], name: "index_tasks_on_name"
   end
 
   create_table "users", force: :cascade do |t|
@@ -55,5 +53,4 @@ ActiveRecord::Schema.define(version: 2020_03_23_055446) do
 
   add_foreign_key "labellings", "labels"
   add_foreign_key "labellings", "tasks"
-  add_foreign_key "tasks", "users"
 end
