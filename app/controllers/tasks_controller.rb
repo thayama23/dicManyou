@@ -14,7 +14,7 @@ class TasksController < ApplicationController
     # @tasks = Task.all.order(created_at: :desc)
     # @tasks = Task.where(user_id: current_user)
       @tasks = current_user.tasks
-      
+      # binding.irb
       if params[:sort_expired] == "true"  
         @tasks = @tasks.order(deadline: :ASC)
 
